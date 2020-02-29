@@ -176,16 +176,16 @@
         const depositAmount = parseFloat(
           document.getElementById("deposit-amount").value
         );
-        if (isNaN(depositAmount)) {
-          showAlert("alert-deposit");
-          resetInput("deposit-amount");
-        } else {
+        if (!isNaN(depositAmount) && depositAmount >= 0) {
           updateSpanText("current-deposit", depositAmount);
 
           updateSpanText("current-amount", depositAmount);
 
           resetInput("deposit-amount");
           offAlert("alert-deposit");
+        } else {
+          showAlert("alert-deposit");
+          resetInput("deposit-amount");
         }
       });
 
@@ -195,7 +195,7 @@
         const withdrawAmount = parseFloat(
           document.getElementById("withdraw-amount").value
         );
-        if (!isNaN(withdrawAmount)) {
+        if (!isNaN(withdrawAmount) && withdrawAmount >= 0) {
           const CurrentwithdrawAmount = parseFloat(
             document.getElementById("current-withdraw").innerText
           );
