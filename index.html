@@ -130,9 +130,13 @@
           transactionArea.style.display = "block";
           const username = (document.getElementById("username").value = "");
           const password = (document.getElementById("password").value = "");
+          const alert = document.getElementById("alert");
+          alert.style.display = "none";
         } else {
           const alert = document.getElementById("alert");
           alert.style.display = "block";
+          const username = (document.getElementById("username").value = "");
+          const password = (document.getElementById("password").value = "");
         }
       });
 
