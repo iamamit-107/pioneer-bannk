@@ -183,6 +183,7 @@
           if (currentAmount < withdrawAmount) {
             alert("Not enough money");
             document.getElementById("withdraw-amount").value = "";
+            document.getElementById("alert-withdraw").style.display = "none";
           } else {
             const totlaWithdraw = withdrawAmount + CurrentwithdrawAmount;
             document.getElementById(
