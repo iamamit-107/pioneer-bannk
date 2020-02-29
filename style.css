@@ -1,0 +1,36 @@
+.container {
+  margin: 100px;
+}
+#login-area {
+  margin: 100px;
+}
+#submit-area {
+  box-shadow: 5px 5px 10px #bfbfbf;
+  padding: 50px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+#alert,
+#alert-withdraw,
+#alert-deposit {
+  display: none;
+}
+
+#transaction-area {
+  display: none;
+}
+.show-details {
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+}
+.deposit {
+  background-color: slateblue;
+}
+.withdraw {
+  background-color: darkslategrey;
+}
+.amount {
+  background-color: orange;
+}
