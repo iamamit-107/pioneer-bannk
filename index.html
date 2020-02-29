@@ -118,55 +118,78 @@
 
     <!-- javascript code -->
     <script>
+      //function for reset an input field
+      function resetInput(id) {
+        const input = (document.getElementById(id).value = "");
+      }
+
+      //function for show an area
+      function showArea(id) {
+        const area = document.getElementById(id);
+        area.style.display = "block";
+      }
+      //function for hide an area
+      function dontShowArea(id) {
+        const area = document.getElementById(id);
+        area.style.display = "none";
+      }
+
+      //function for update the withdraw, deposit, total amount
+      function updateSpanText(id, amount) {
+        const Currentamount = parseFloat(document.getElementById(id).innerText);
+        const total = amount + Currentamount;
+        document.getElementById(id).innerText = total;
+      }
+
+      //function for show an alert
+      function showAlert(id) {
+        const alert = document.getElementById(id);
+        alert.style.display = "block";
+      }
+      //function for hide an alert
+      function offAlert(id) {
+        const alert = document.getElementById(id);
+        alert.style.display = "none";
+      }
+
       // login button
       const loginBtn = document.getElementById("login");
       loginBtn.addEventListener("click", function() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         if (username !== "" && password !== "") {
-          const loginArea = document.getElementById("login-area");
-          loginArea.style.display = "none";
-          const transactionArea = document.getElementById("transaction-area");
-          transactionArea.style.display = "block";
-          const username = (document.getElementById("username").value = "");
-          const password = (document.getElementById("password").value = "");
-          const alert = document.getElementById("alert");
-          alert.style.display = "none";
+          dontShowArea("login-area");
+          showArea("transaction-area");
+          resetInput("username");
+          resetInput("password");
+          offAlert("alert");
         } else {
-          const alert = document.getElementById("alert");
-          alert.style.display = "block";
-          const username = (document.getElementById("username").value = "");
-          const password = (document.getElementById("password").value = "");
+          showAlert("alert");
+          resetInput("username");
+          resetInput("password");
         }
       });
 
-      //   deposit button functionality
+      // deposit button functionality
       const depositBtn = document.getElementById("deposit-btn");
       depositBtn.addEventListener("click", () => {
         const depositAmount = parseFloat(
           document.getElementById("deposit-amount").value
         );
         if (isNaN(depositAmount)) {
-          document.getElementById("alert-deposit").style.display = "block";
-          document.getElementById("deposit-amount").value = "";
+          showAlert("alert-deposit");
+          resetInput("deposit-amount");
         } else {
-          const CurrentDepositAmount = parseFloat(
-            document.getElementById("current-deposit").innerText
-          );
-          const totalDeposit = depositAmount + CurrentDepositAmount;
-          document.getElementById("current-deposit").innerText = totalDeposit;
+          updateSpanText("current-deposit", depositAmount);
 
-          const currentAmount = parseFloat(
-            document.getElementById("current-amount").innerText
-          );
-          const totalAmount = currentAmount + depositAmount;
-          document.getElementById("current-amount").innerText = totalAmount;
-          document.getElementById("deposit-amount").value = "";
-          document.getElementById("alert-deposit").style.display = "none";
+          updateSpanText("current-amount", depositAmount);
+
+          resetInput("deposit-amount");
+          offAlert("alert-deposit");
         }
       });
 
-      //   withdraw button functionality
+      // withdraw button functionality
       const withdrawBtn = document.getElementById("withdraw-btn");
       withdrawBtn.addEventListener("click", () => {
         const withdrawAmount = parseFloat(
@@ -182,30 +205,26 @@
           );
           if (currentAmount < withdrawAmount) {
             alert("Not enough money");
-            document.getElementById("withdraw-amount").value = "";
-            document.getElementById("alert-withdraw").style.display = "none";
+            resetInput("withdraw-amount");
+            offAlert("alert-withdraw");
           } else {
-            const totlaWithdraw = withdrawAmount + CurrentwithdrawAmount;
-            document.getElementById(
-              "current-withdraw"
-            ).innerText = totlaWithdraw;
+            updateSpanText("current-withdraw", withdrawAmount);
             const totalAmount = currentAmount - withdrawAmount;
             document.getElementById("current-amount").innerText = totalAmount;
-            document.getElementById("withdraw-amount").value = "";
-            document.getElementById("alert-withdraw").style.display = "none";
+            resetInput("withdraw-amount");
+            offAlert("alert-withdraw");
           }
         } else {
-          const alert = document.getElementById("alert-withdraw");
-          alert.style.display = "block";
-          document.getElementById("withdraw-amount").value = "";
+          showAlert("alert-withdraw");
+          resetInput("withdraw-amount");
         }
       });
 
-      //   logout button
+      // logout button
       const logout = document.getElementById("logout");
       logout.addEventListener("click", () => {
-        document.getElementById("login-area").style.display = "block";
-        document.getElementById("transaction-area").style.display = "none";
+        showArea("login-area");
+        dontShowArea("transaction-area");
       });
     </script>
   </body>
